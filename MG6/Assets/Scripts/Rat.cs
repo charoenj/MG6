@@ -24,6 +24,18 @@ public class Rat : MonoBehaviour
         //      more rats. (The spawning logic is written for you.)
         //
         // Also, shrink the original Rat by _shrinkAmount amount.
+
+        if (collision.gameObject.CompareTag("Attack")) {
+            for (int i = 0; i < _spawnAmount; i++) {
+                SpawnSmallRat();
+            }
+        
+        if (transform.localScale.x > 0.1f) {
+            transform.localScale -= Vector3.one * _shrinkAmount;
+        }
+                
+
+    
         //
         // STEP 3
         // Additionally, call SpawnExplosion(), and pass in a different color
@@ -34,6 +46,10 @@ public class Rat : MonoBehaviour
         //      color: first yellow, then red, then blue, then looping back
         //      around to yellow, etc.
 
+        SpawnExplosion(_colors[_colorIndex]);
+        
+        _colorIndex = (_colorIndex + 1) % _colors.Length; 
+        }
 
         // STEP 2 -------------------------------------------------------------
     }
@@ -60,9 +76,9 @@ public class Rat : MonoBehaviour
         //      rotation correctly.
         // Your game should look exaclty like the finished example.
 
-        //float randomAngle = Random.Range(0, 360);
-        //Vector3 rotationAngles = new Vector3(0, randomAngle, 0);
-        //rat.transform.Rotate(rotationAngles);
+        float randomAngle = Random.Range(0.0f, 360.0f);
+        Vector3 rotationAngles = new Vector3(0, 0, randomAngle);
+        rat.transform.Rotate(rotationAngles);
 
         // STEP 3 -------------------------------------------------------------
     }

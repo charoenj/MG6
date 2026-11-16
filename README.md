@@ -1,2 +1,6 @@
 # MG6
 
+1) If you write a for loop inside an Update method, do you think that each execution of the for loop will happen once per Update, or will the entire for loop complete before the Update method finishes? As a result, if you write a for loop that takes a REALLY long time to finish, will it make the game lag, or will it execute over multiple frames?
+- The entire for loop will execute before the Update() method finishes. It does not execute once per frame. This means that if a for loop takes a really long time to finish it can cause the game to lag or freeze because Unity has to finish the loop before it moves to the next frame.
+2) Test your game until you discover at least one issue with the way we’ve written our logic to allow the player to jump through the bottom of platforms. What’s the issue, and why does our logic allow this?
+- One issue is that the player can sometimes jump through the bottom of the platform when technically it doesn't make sense. This happens because our logic only checks whether the player is moving upward when deciding to ignore platform collisions. If the player is already falling or starts jumping while underneath a platform the collision logic may not handle every situation correctly. 
